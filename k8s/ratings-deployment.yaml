@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: bookinfo-dev-ratings
-        image: ghcr.io/[GITHUB_USER]/bookinfo-ratings:dev
+        image: ghcr.io/jowkha/bookinfo-ratings:dev
         imagePullPolicy: Always
         ports:
         - containerPort: 8080

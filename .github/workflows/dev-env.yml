@@ -19,8 +19,9 @@ jobs:
         with:
           push: true
           tags: ghcr.io/jowkha/bookinfo-ratings:dev
+          secret: GIT_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}
 
-        uses: actions/checkout@v2
-      - run: docker build -t ghcr.io/jowkha/bookinfo-ratings:dev .
-      - run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-      - run: docker push ghcr.io/jowkha/bookinfo-ratings:dev
+        #uses: actions/checkout@v2
+      #- run: docker build -t ghcr.io/jowkha/bookinfo-ratings:dev .
+      #- run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      #- run: docker push ghcr.io/jowkha/bookinfo-ratings:dev

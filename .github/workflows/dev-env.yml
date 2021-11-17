@@ -1,0 +1,28 @@
+name: dev-env
+on:
+  push:
+    branches:
+      - dev
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io/jowkha/bookinfo-ratings:dev
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ghcr.io/jowkha/bookinfo-ratings:dev
+          secret: GIT_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+
+        #uses: actions/checkout@v2
+      #- run: docker build -t ghcr.io/jowkha/bookinfo-ratings:dev .
+      #- run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      #- run: docker push ghcr.io/jowkha/bookinfo-ratings:dev

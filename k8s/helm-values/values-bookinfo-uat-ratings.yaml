@@ -1,12 +1,12 @@
 ratings:
-  namespace: student3-bookinfo-dev
+  namespace: student3-bookinfo-uat
   replicas: 1
   imagePullSecrets: registry-bookinfo
   port: 8080
   image: ghcr.io/jowkha/bookinfo-ratings
-  tag: dev
+  tag: uat
 ingress:
-  host: itkmitl.bookinfo.dev.opsta.net
+  host: itkmitl.bookinfo.uat.opsta.net
   path: "/student3/ratings(/|$)(.*)"
   serviceType: ClusterIP
   annotations:
@@ -14,8 +14,9 @@ ingress:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 extraEnv:
   SERVICE_VERSION: v2
-  MONGO_DB_URL: mongodb://bookinfo-dev-ratings-mongodb:27017/ratings
+  MONGO_DB_URL: mongodb://bookinfo-uat-ratings-mongodb:27017/ratings
   MONGO_DB_USERNAME: ratings
 extraEnvSecret:
   MONGO_DB_PASSWORD:
-    bookinfo-dev-ratings-mongodb-secret: mongodb-password
+    bookinfo-uat-ratings-mongodb-secret: mongodb-password
+    

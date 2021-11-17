@@ -1,0 +1,11 @@
+image:
+  tag: 5.0.3-debian-10-r30
+auth:
+  enabled: true
+  username: ratings
+  database: ratings
+  existingSecret: bookinfo-uat-ratings-mongodb-secret
+persistence:
+  enabled: false
+initdbScriptsConfigMap: bookinfo-uat-ratings-mongodb-initdb
+helm install -f k8s/helm-values/values-bookinfo-uat-ratings.yaml bookinfo-uat-ratings k8s/helm
